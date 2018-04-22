@@ -8,18 +8,34 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class RegionReaderViewController: UIViewController {
 
+    let userLocale = Locale.current
+    
+    @IBOutlet weak var deviceLanguageLabel: UILabel!
+    @IBOutlet weak var deviceRegionLabel: UILabel!
+    @IBOutlet weak var deviceMilesOrKmLabel: UILabel!
+    @IBOutlet weak var changeLanguageSettingButton: UIButton!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
+        self.retrieveDeviceLanguageandRegionSettings()
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    func retrieveDeviceLanguageandRegionSettings() {
+        deviceLanguageLabel.text = userLocale.languageCode
+        deviceRegionLabel.text = userLocale.regionCode
+        
+        if (userLocale.usesMetricSystem) {
+            deviceMilesOrKmLabel.text = "km"
+        } else {
+            deviceMilesOrKmLabel.text = "miles"
+        }
     }
-
+    
+    func openSetting() {
+        
+    }
 
 }
 
